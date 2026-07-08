@@ -17,7 +17,6 @@ const QUICK_ACTIONS = [
   { icon: 'location', label: 'Cari\nApotek', route: '/pharmacy', gradient: COLORS.gradient.secondary },
   { icon: 'chatbubble-ellipses', label: 'KAI\nAssistant', route: '/(tabs)/chat', gradient: COLORS.gradient.primary },
   { icon: 'gift', label: 'KF\nRewards', route: '/rewards', gradient: COLORS.gradient.secondary },
-  { icon: 'cube', label: 'Cek\nStok', route: '/inventory', gradient: COLORS.gradient.accent },
   { icon: 'receipt', label: 'Riwayat\nPesanan', route: '/orders', gradient: COLORS.gradient.dark },
 ];
 
