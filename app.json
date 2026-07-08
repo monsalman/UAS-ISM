@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "KF-DHE",
-    "slug": "kf-dhe-mobile",
+    "name": "KF-NEXUS",
+    "slug": "kf-nexus-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "scheme": "kfdhe",
+    "scheme": "kfnexus",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -15,14 +15,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kimiafarma.dhe"
+      "bundleIdentifier": "com.kimiafarma.nexus"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0A8F3C"
       },
-      "package": "com.kimiafarma.dhe"
+      "package": "com.kimiafarma.nexus"
     },
     "web": {
       "favicon": "./assets/favicon.png",
