@@ -87,22 +87,24 @@ export default function MedicinesScreen() {
         </LinearGradient>
 
         {/* Categories */}
-        <FlatList
-          data={CATEGORIES}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item}
-          contentContainerStyle={{ paddingHorizontal: SPACING.md, paddingVertical: SPACING.sm }}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[styles.catChip, category === item && styles.catChipActive]}
-              onPress={() => setCategory(item)}
-            >
-              <Ionicons name={CAT_ICONS[item]} size={14} color={category === item ? COLORS.white : COLORS.primary} style={{ marginRight: 4 }} />
-              <Text style={[styles.catText, category === item && styles.catTextActive]}>{item}</Text>
-            </TouchableOpacity>
-          )}
-        />
+        <View style={{ height: 50 }}>
+          <FlatList
+            data={CATEGORIES}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => item}
+            contentContainerStyle={{ paddingHorizontal: SPACING.md, alignItems: 'center' }}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[styles.catChip, category === item && styles.catChipActive]}
+                onPress={() => setCategory(item)}
+              >
+                <Ionicons name={CAT_ICONS[item]} size={16} color={category === item ? COLORS.white : COLORS.primary} style={{ marginRight: 6 }} />
+                <Text style={[styles.catText, category === item && styles.catTextActive]}>{item}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
 
         {/* Medicine List */}
         <FlatList
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
   searchInput: { flex: 1, paddingVertical: 12, paddingLeft: SPACING.xs, fontSize: 14 },
   catChip: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 8, borderRadius: RADIUS.full, backgroundColor: COLORS.white, marginRight: SPACING.xs, ...SHADOWS.sm },
   catChipActive: { backgroundColor: COLORS.primary },
-  catText: { fontSize: 12, color: COLORS.textSecondary, fontWeight: '500' },
+  catText: { fontSize: 13, color: COLORS.textSecondary, fontWeight: '600' },
   catTextActive: { color: COLORS.white },
   medCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.white, borderRadius: RADIUS.lg, padding: SPACING.md, marginBottom: SPACING.sm, ...SHADOWS.md },
   medIconWrap: { width: 52, height: 52, borderRadius: RADIUS.md, justifyContent: 'center', alignItems: 'center' },
