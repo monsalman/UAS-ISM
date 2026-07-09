@@ -19,9 +19,13 @@ export default function PrescriptionVerifyScreen() {
 
   useFocusEffect(useCallback(() => {
     (async () => {
-      let data = await getData(KEYS.PRESCRIPTIONS);
-      if (!data || data.length === 0) { data = SEED; await setData(KEYS.PRESCRIPTIONS, data); }
-      setPrescriptions(data);
+      const data = await getData(KEYS.PRESCRIPTIONS);
+      if (!data || data.length === 0) { 
+        await setData(KEYS.PRESCRIPTIONS, SEED); 
+        setPrescriptions(SEED);
+      } else {
+        setPrescriptions(data);
+      }
     })();
   }, []));
 

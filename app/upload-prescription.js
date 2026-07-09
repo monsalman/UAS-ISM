@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, SPACING, RADIUS, FONTS, SHADOWS } from '../constants/theme';
+import { getData, setData, KEYS } from '../utils/storage';
 
 export default function UploadPrescriptionScreen() {
   const router = useRouter();
@@ -16,13 +17,31 @@ export default function UploadPrescriptionScreen() {
     { id: '3', label: 'Resep Dokter Gigi', image: 'medical-outline', desc: 'Perawatan gigi & mulut' },
   ];
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!selected) return Alert.alert('Pilih Tipe Resep', 'Tap salah satu tipe resep di atas');
-    Alert.alert(
-      'Resep Terupload',
-      `Resep "${prescriptions.find(p => p.id === selected).label}" berhasil diupload.\n\n(Simulasi demo — file tidak benar-benar dikirim)`,
-      [{ text: 'OK', onPress: () => router.back() }]
-    );
+    
+    // Tambahkan resep baru ke storage agar bisa diverifikasi di halaman Verifikasi Resep
+    const newPrescription = {
+      id: 'rx_' + Date.now(),
+      patient: 'Salman (User)',
+      doctor: prescriptions.find(p => p.id === selected).label,
+      medicines: ['Paracetamol 500mg', 'Amoxicillin 500mg'], // Mock obat hasil OCR
+      status: 'pending',
+      date: new Date().toISOString().split('T')[0]
+    };
+
+    try {
+      const existing = (await getData(KEYS.PRESCRIPTIONS)) || [];
+      await setData(KEYS.PRESCRIPTIONS, [newPrescription, ...existing]);
+      
+      Alert.alert(
+        'Resep Terupload',
+        `Resep "${newPrescription.doctor}" berhasil diupload.\n\nResep Anda sekarang masuk antrean verifikasi apoteker.`,
+        [{ text: 'OK', onPress: () => router.back() }]
+      );
+    } catch (e) {
+      Alert.alert('Error', 'Gagal mengupload resep');
+    }
   };
 
   return (
